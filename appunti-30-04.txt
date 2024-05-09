@@ -1,0 +1,73 @@
+escuzione commandexec per trovare il parametro dell'applicazione per trovare dove lo script php fallisce.
+
+69. Ripetere l'operazione di fuzzy sul paramtro, non sulle URL, per trovare il parametro accettatto dall'applicazione PHP.
+
+70. esempio richiesta dell'URL con vari parametri.
+	I pro usano applicazioni da riga di comando perché sono scriptabili, esempio curl.
+
+72. Alternativa usare ffuf per fuzzare il parametro da passare allo script, wordlist è 'burp-parameter-names.txt'. Il nome della word prende nome dal software burp-suite.
+	- Burp è un applicazione proxy che si mette tra noi (host) e il server che siamo in comunicazione.
+	Permette di stoppare le richieste e risposte e modificare quest'ultime per trovare debolezze e vulnerabilità.
+	Burp può automattizzare molti degli attacchi visti precedentemente, prendendo wordlist e automatizzare il processo di enumerazione.
+
+L'idea è che l'applicazione risponda in maniera differente in base a se il parametro è quello corretto o meno, e la risposta è discendibile a quando il parametro è corretto o errato.
+Quando otteniamo risposte uguali, vuol dire che il parametro è sballato, esempio in fuff vediamo la risposta con le stesse dimensioni (campo Size => Status: 200, Size: 1534, ..).
+Quando ho un warning ho una size di 1534, invece con un parametro che manda in crash o esegue l'applicazione ho una Size diverso.
+
+74. Seguendo l'idea oltre a scartare le riposte 403, scartiamo anche le risposte con Size 1534, quindi trovare le risposte con parametro esistente. Possiamo filtrare per size col parametro '-fs'.
+Detto ciò troviamo la risposta con parametro 'ip' ha size 1458, quindi troviamo il parametro che l'applicazione esegue.
+
+75. Non sappiamo come l'applicazione reagisce al contenuto di quel parametro, ma sappiamo che reagisce a quel nome di parametro.
+
+78. Capire come reagisce l'applicazione a valori diversi dell'input. In questo caso capiamo che l'input accettato è una stringa e sappiamo che l'applicazione accetta un indirizzo IP, quindi delimitiamo il test di valori da testare (NON HA SENSO TESTARE TUTTI I POSSIBILI VALORI DI STRINGA).
+	- input validi/invalidi, esegue la funzione principale del programma (fa arrivare alla system) - valido, invalido invece no.
+	- input leciti/illeciti, lecito eseguire ping con 1 solo IP, illecito eseguire ping con anche un comando in append ';'.
+
+79. Per arrivare a scindere i vari input, il tester invia diversi input ben formati con un criterio logico.
+
+80. 
+
+83. Trovare diverse classi di output equivalenti tra i vari input inviati.
+Confrontando con gli output del fuzzying con output di default (assumiamo che il localhost sia il ping IPv4 con output di default) - questo si chiama, costruire un distinguiscer.
+
+cat ip.txt
+127.0.0.1	# Valido, IPv4
+0x7f000001	# Valido, HEX
+2130706433	# Valido, (non mi ricordo perché)
+::1		# Valido
+0.0.0.0.0.0.0:1
+localhost
+localhost.localdomain
+127.0.0.0.1
+:::1
+loc@lhost
+
+questa lista può eseguire varie rappresentazioni valide e invalide di ip, HEX, decimale, etc (mi ero preso)
+
+88. Abbiamo 2 categoria di out diversi, Size 1458 e Size 1770, abbiamo due valori di ritorno da questa wordlist, quindi abbiamo 2 mode. I valori costanti molto probabilmente abbiamo un messaggio di errore.
+Per quanto riguarda ::1, la versione di ping sul webhost non supporta gli IPv6.
+L'input sbagliato non viene riflesso nella pagina.
+I valori diversi invece corrispondo alla dimensione del nome del host da pingare, ergo esecuzione del comando valido.
+Creo un istogramma delle risposte ottenute. Quando ottengo 2 mode ottengo 2 comportamenti di esecuzione del codice.
+
+95. Distinguiscer, se ho un <div> vuoto, allora errore del comando ping; <div> non vuoto, corretta esecuzione del comando ping.
+
+96. Input validi => size != 1458.
+Input invalidi => size = 1458 {ip invalidi, ipv6 validi, validi ma non definiti}.
+
+98. Input illecito, esecuzione di un secondo comando.
+in payload.txt ci sono vari payload con la concatenazione di vari payload con il secondo comando.
+
+100. Si concatena con i seguenti caratteri encoded { ';' '&&' '|' '$()' }
+Spazio, tempo e rete possiamo discendere se l'applicazione è vulnerabile alla command injection.
+In questo caso usiamo lo spazio del tempo perché iniettiamo una sleep di 5s.
+Un altro esempio nel dominio dello spazio è inserire il comando whoaim per misurare la dimensione della risposta.
+Usiamo il tempo perché è indipendente dall'output e consente di rilevare iniezione di codice con input invalidi - $ ping 8.8.8.$(sleep 5) in questo caso bash esegue prima sleep(5) e poi il ping.
+
+107. L'istogramma ottenuto è molto più sparso, l'assunzione che possiamo fare è che tutto ciò che è sompra i 5 secondi, allora ha portato all'esecuzione di sleep 5 - input valido ma illecito.
+
+-> Input lecito, non porta all'esecuzione di sleep 5;
+-> Input illecito, porta all'esecuzione di sleep 5.
+
+L'attacante nella pratica va a trovare quegli input che sono validi e illeciti.
+Tutto ciò sempre per capire quale pattern serve come input e sotto quali condizioni avviene iniezione di codice.

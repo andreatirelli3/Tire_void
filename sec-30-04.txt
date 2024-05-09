@@ -1,0 +1,51 @@
+Lista fidata di CA.
+
+Pinning => certificati pinnati all'interno di un browser. (caso login reti wifi)
+
+[SOLUZIONE ATTUALE] CT - Certificate Transparency, impedire che una CA rilasci certificati all'insaputa di tutti.
+Visibilità pubblica dei certificati che vengono rilasciati.
+
+- Auiditor controlla tutti i CT Log e controllare che non ci siano certificati multipli per lo stesso dominio
+
+- Monitor controlla se ci sono anomalie:
+	- CA che emette troppi certificati
+	- Certificati dichiarati revocati ma che sono ancora presenti
+
+Tutti i browser moderni conoscono la CT e si aspettano un CT Timestamp.
+L'idea è che ci siano più CT Log services.
+I dati vengono memorizzati usando strutture verifcabili (append only).
+
+# IP Sec
+Opera a livello IP
+	- SA, sessione logica per mettere in sicurezza una comunicazione.
+	Negozazione delle informazioni necessarie per rendere sicura la comunicazione.
+
+	- IKE, protocolli di scambio di chiavi simmuetriche di sessione.
+
+Modalità IPSec:
+	- Transport: crittografica tra i due host che vogliono parlare tra di loro.
+	Si creano loro le SA tra i due host. (end2end)
+	
+	-Tunnel: comunicazione protetta tra due gateway.
+	Le comunicazioni su internet sono protette ma nella rete locale sono esposte.
+		+ all'aumentare degli host aumenta il carico di lavoro per il gateway.
+	AH -> il pacchetto prima di essere inviato sulla rete viene aggiunto un nuovo header.
+	Ci consente di avere garanzia di autenticità e integrità su tutto il pacchetto header IP.
+	* Se perdo qualche pacchetto ci pensa TCP, non IPSec con il sequence number.
+
+# SSL/TLS
+Livello di trasporto.
+{ Riservatezza, Autenticazione, Integrit à}
+
+FLusso di comunicazine:
+
+1. SSL Handhshake.
+
+2. SSL Record.
+	- SSL implementa sottoprotocolli per cambiare i parametri di sicurezza della comunicazione.
+
+...
+
+HTTPS String - redirect del sito web HTTPS, viene "strippato" il protocollo SSL.
+*non è efficace se il sito web risponse SOLO in https.
+
