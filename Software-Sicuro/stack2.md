@@ -46,9 +46,10 @@ Questo è stato il mio riferimento
 https://stackoverflow.com/questions/44479826/how-do-you-set-a-string-of-bytes-from-an-environment-variable-in-python
 scrivere i byte diretti nella variabile di ambiente per poi passare i byte per pownare la macchina.
 
-(gdb) display /4wx *(int*)$esp <- guarda cosa punta esp
-(gdb) b *0x080484a4    <- breakpoint ad una istruzione
-
+```` bash
+(gdb) b *0x080484a4              # breakpoint ad una istruzione
+(gdb) display /4wx *(int*)$esp   # guarda cosa punta esp
+````
 **exploit.py**
 ```` python
 import os
