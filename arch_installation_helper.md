@@ -129,7 +129,15 @@ systemctl enable paccache.timer
 *Useful links*:
 - https://wiki.archlinux.org/title/Pacman#Cleaning_the_package_cache
 ### Power plan
-> TO DO: this sections is in building ...
+``` bash
+# Install the power daemom
+pacman -S power-profiles-daemon
+# Enable it at startup
+systemctl enable power-profiles-daemon.service
+```
+*Useful links*:
+- https://www.reddit.com/r/gnome/comments/11pkz2j/power_profiles_what_exactly_do_they_change/
+- https://gitlab.freedesktop.org/upower/power-profiles-daemon/-/blob/main/README.md
 ### NVIDIA Driver
 For the NVIDIA proprietary driver, it is necessary to load some kernel modules.
 ``` bash
@@ -273,7 +281,7 @@ sudo pacman -S noto-fonts-emoji nerd-fonts
 ```
 ### Default application
 Now install the *personal* default application for the workflow:
-- Terminal: paru -S blackbox-termina
+- Terminal: paru -S blackbox-terminal
 - Browser => paru -S brave-bin
 - Video => flatpak install flathub com.github.rafostar.Clapper
 - Email => flatpak install flathub org.mozilla.Thunderbird
