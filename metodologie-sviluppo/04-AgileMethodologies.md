@@ -110,3 +110,13 @@ Selezione delle features che possono essere realizzate in **2 settimane**.
 
 Il codice deve essere **testato** e il *Chief programmer* decide quali classi sono promosse.
 - #Artifacts classi testate e funzionanti della feature.
+# Dynamic System Development Method
+> Evoluzione Agile di **RAD**.
+
+- **Coinvolgimento** attivo dell'utente;
+- **Potere decisionale** ai team;
+- Rilascio **frequente**;
+- Sviluppo **iterativo** e **incrementale**;
+- Cambiamenti **reversibili**;
+- Requisiti definiti ad come **base ad alto livello**;
+- **Testing** integrato nel ciclo di vita.

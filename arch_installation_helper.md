@@ -420,3 +420,23 @@ sudo vim /etc/libvirt/libvirtd.conf
 # Add the group to the user
 usermod -aG libvirt $USER
 ```
+## OpenVPN
+> This section is for [[#GNOME]], but can be adapted to other DE/WM.
+``` bash
+sudo pacman -S networkmanager-openvpn
+```
+*Useful links*:
+- https://www.reddit.com/r/archlinux/comments/edoc01/openvpn_graphical_client_for_arch/
+## HackTheBox
+> TO DO: this sections is in building ...
+### Pwn
+> Make a [[#Pyenv and Pyvirtualenv]] for pwn.
+
+List of packages:
+- gdb, GNU Debugger, used for disassemble binary;
+- [pwndbg](https://github.com/pwndbg/pwndbg), better gdb;
+- radare2, another disassembler utility support various plugins:
+	- [r2dec](https://github.com/wargio/r2dec-js), decoder for ASM written in js;
+	- [r2ghidra](https://github.com/radareorg/r2ghidra), ghidra decoder.
+- pwntools, library for various tools for pwn tasks. **Important**: install it through **pip** using the *pwn virtualenv*.
+- Ghidra, GUI decoder for binary file;
