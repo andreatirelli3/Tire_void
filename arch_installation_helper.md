@@ -313,6 +313,7 @@ Now install the *personal* default application for the workflow:
 - Browser: super + F
 - File: super + E
 - Settings: super + I
+- Obsidian: super + N
 - Workspace 1: super + 1
 - Workspace 2: super + 2
 - Workspace 3: super + 3
