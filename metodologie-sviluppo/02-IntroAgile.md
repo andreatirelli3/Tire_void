@@ -9,7 +9,7 @@ Lo scopo principale era ingegnerizzare un approccio che evitasse il **fallimento
 - *Collaborare col cliente in favore di negoziazioni di contratti;*
 - *Risolvere le sfide in favore di seguire forzatamente il piano.*
 ### 12 principi
->Il manifesto espone 12 principi fondamentali per un approccio Agile appropriato.
+>Il manifesto espone 12 principi fondamentali per un approccio #Agile appropriato.
 >Si parla di come costruire il progetto attorno a individui **motivati** dal progetto e dall'ambiente di lavoro, un ambiente dove le *informazioni* sono scambiate **faccia a faccia** per evitare malintesi e che un **ambiente** **sostenile** per il progetto e necessario per far vivere e coinvolgere le varie parti in modo *pacifico*.
 >*Continua attenzione* alle **eccellenze tecniche** e di design ma mantenendo la **semplicità** per non aumentare il carico di lavoro. Perciò, per questi due punti precedenti è necessario che i team si **auto organizzano** il lavoro ed a intervalli regolari si **riflette** su come si può migliorare l'efficienza.
 # Tecniche Agile
