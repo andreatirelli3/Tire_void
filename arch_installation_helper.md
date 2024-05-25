@@ -316,6 +316,7 @@ Now install the *personal* default application for the workflow:
 - TopHat
 - Rounded window corner: https://github.com/flexagoon/rounded-window-corners
 - Kstatus
+- Unite: https://github.com/hardpixel/unite-shell
 ### Shortcut
 - Terminal: super + T
 - Browser: super + F

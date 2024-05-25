@@ -5,7 +5,7 @@
 22/05:
 - [ ] (H) Align the extension list from laptop and PC;
 - [ ] (H) Improve the .md guide;
-- [ ] (M) Spotify, Discord on the PC;
+- [x] (M) Spotify, Discord on the PC;
 - [ ] (L) neovim;
 - [ ] (L) tmux;
 - [ ] (L) Clean the backpack;
