@@ -1,4 +1,4 @@
-# Archlinux 
+# Archlinux
 ---
 ## Checklist
 - [ ] (optional) [[#Connect via ssh]]
@@ -143,7 +143,7 @@ For the NVIDIA proprietary driver, it is necessary to load some kernel modules.
 ``` bash
 # Edit the mkinitcpio configuration
 vim /etc/mkinitcpio.conf
-# Load the following nvidia modules
+# Add the following nvidia modules
 "MODULES=(... nvidia nvidia_modeset nvidia_uvm nvidia_drm)"
 
 # Kernel flag for GRUB - also feel free to do more GRUB configuration like timer and submenus
@@ -241,7 +241,7 @@ gsettings set org.gnome.settings-daemon.plugins.media-keys volume-step 2
 ### Debloat
 Uninstall useless application that come pre installed. A example list:
 ```
-totem yelp gnome-software gnome-tour gnome-music epiphany gnome-maps gnome-contacts gnome-logs gnome-font-viewer simple-scan orca gnome-system-monitor gnome-connections gnome-characters snapshot baobab gnome-disk-utility gnome-text-editor gnome-remote-desktop gnome-console loupe gnome-calculator
+totem yelp gnome-software gnome-tour gnome-music epiphany gnome-maps gnome-contacts gnome-logs gnome-font-viewer simple-scan orca gnome-system-monitor gnome-connections gnome-characters snapshot baobab gnome-disk-utility gnome-text-editor gnome-remote-desktop gnome-console loupe gnome-calculator gnome-weather
 ```
 After remove the un-wanted desktop link in the application launcher.
 ``` bash
