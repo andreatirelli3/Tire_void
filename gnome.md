@@ -55,11 +55,6 @@ done
 sudo pacman -Rcns "${packages[@]}"
 ```
 ## Default/prefer application
-...
-
-``` bash
-
-```
 ## Theme libwaita personalizzation
 ## Extensions installation
 ## Shortcut
