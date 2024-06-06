@@ -89,4 +89,14 @@
 	- *Ascoltare i clienti e capire i loro bisogni*
 - Designing
 	- *Organizzare la logica del sistema*
+### Valori
+- Comunicazione
+- Semplicità
+- Feedback
+	- sistema (unit test)
+	- clienti (acceptance test)
+	- team (stimando il tempo richiesto per i nuovi requisiti)
+- Coraggio
+- Rispetto
 ## Agile modelling
+
