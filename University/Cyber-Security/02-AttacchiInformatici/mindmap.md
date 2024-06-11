@@ -33,6 +33,7 @@
 	- Non hanno cpacità tecniche
 - Negoziatori
 - Affiliati
+	- Affiliati a un programma "Malware as a service"
 - Specialisti
 - Broker
 - Vittime
